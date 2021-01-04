@@ -1,10 +1,15 @@
 # WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
 mikrotik_mib:
   walk:
-  - 1.3.6.1.2.1.2
-  - 1.3.6.1.2.1.25.2.3.1
+  - 1.3.6.1.2.1.2.2
+  - 1.3.6.1.2.1.25.1
+  - 1.3.6.1.2.1.25.2
+  - 1.3.6.1.2.1.25.3
   - 1.3.6.1.2.1.31.1.1
+  - 1.3.6.1.2.1.4.22
+  - 1.3.6.1.2.1.9999.1
   - 1.3.6.1.4.1.14988.1.1
+  - 1.3.6.1.4.1.3495
   get:
   - 1.3.6.1.2.1.1.1.0
   - 1.3.6.1.2.1.1.3.0
@@ -22,10 +27,6 @@ mikrotik_mib:
     oid: 1.3.6.1.2.1.1.5
     type: DisplayString
     help: An administratively-assigned name for this managed node - 1.3.6.1.2.1.1.5
-  - name: ifNumber
-    oid: 1.3.6.1.2.1.2.1
-    type: gauge
-    help: The number of network interfaces (regardless of their current state) present on this system. - 1.3.6.1.2.1.2.1
   - name: ifIndex
     oid: 1.3.6.1.2.1.2.2.1.1
     type: gauge
@@ -808,6 +809,38 @@ mikrotik_mib:
       labelname: ifName
       oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
+  - name: hrSystemUptime
+    oid: 1.3.6.1.2.1.25.1.1
+    type: gauge
+    help: The amount of time since this host was last initialized - 1.3.6.1.2.1.25.1.1
+  - name: hrSystemDate
+    oid: 1.3.6.1.2.1.25.1.2
+    type: DateAndTime
+    help: The host's notion of the local date and time of day. - 1.3.6.1.2.1.25.1.2
+  - name: hrSystemInitialLoadDevice
+    oid: 1.3.6.1.2.1.25.1.3
+    type: gauge
+    help: The index of the hrDeviceEntry for the device from which this host is configured to load its initial operating system configuration (i.e., which operating system code and/or boot parameters) - 1.3.6.1.2.1.25.1.3
+  - name: hrSystemInitialLoadParameters
+    oid: 1.3.6.1.2.1.25.1.4
+    type: OctetString
+    help: This object contains the parameters (e.g - 1.3.6.1.2.1.25.1.4
+  - name: hrSystemNumUsers
+    oid: 1.3.6.1.2.1.25.1.5
+    type: gauge
+    help: The number of user sessions for which this host is storing state information - 1.3.6.1.2.1.25.1.5
+  - name: hrSystemProcesses
+    oid: 1.3.6.1.2.1.25.1.6
+    type: gauge
+    help: The number of process contexts currently loaded or running on this system. - 1.3.6.1.2.1.25.1.6
+  - name: hrSystemMaxProcesses
+    oid: 1.3.6.1.2.1.25.1.7
+    type: gauge
+    help: The maximum number of process contexts this system can support - 1.3.6.1.2.1.25.1.7
+  - name: hrMemorySize
+    oid: 1.3.6.1.2.1.25.2.2
+    type: gauge
+    help: The amount of physical read-write main memory, typically RAM, contained by the host. - 1.3.6.1.2.1.25.2.2
   - name: hrStorageIndex
     oid: 1.3.6.1.2.1.25.2.3.1.1
     type: gauge
@@ -873,6 +906,252 @@ mikrotik_mib:
       labelname: hrStorageDescr
       oid: 1.3.6.1.2.1.25.2.3.1.3
       type: DisplayString
+  - name: hrDeviceIndex
+    oid: 1.3.6.1.2.1.25.3.2.1.1
+    type: gauge
+    help: A unique value for each device contained by the host - 1.3.6.1.2.1.25.3.2.1.1
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrDeviceType
+    oid: 1.3.6.1.2.1.25.3.2.1.2
+    type: OctetString
+    help: An indication of the type of device - 1.3.6.1.2.1.25.3.2.1.2
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrDeviceDescr
+    oid: 1.3.6.1.2.1.25.3.2.1.3
+    type: DisplayString
+    help: A textual description of this device, including the device's manufacturer and revision, and optionally, its serial number. - 1.3.6.1.2.1.25.3.2.1.3
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrDeviceID
+    oid: 1.3.6.1.2.1.25.3.2.1.4
+    type: OctetString
+    help: The product ID for this device. - 1.3.6.1.2.1.25.3.2.1.4
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrDeviceStatus
+    oid: 1.3.6.1.2.1.25.3.2.1.5
+    type: gauge
+    help: The current operational state of the device described by this row of the table - 1.3.6.1.2.1.25.3.2.1.5
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    enum_values:
+      1: unknown
+      2: running
+      3: warning
+      4: testing
+      5: down
+  - name: hrDeviceErrors
+    oid: 1.3.6.1.2.1.25.3.2.1.6
+    type: counter
+    help: The number of errors detected on this device - 1.3.6.1.2.1.25.3.2.1.6
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrProcessorFrwID
+    oid: 1.3.6.1.2.1.25.3.3.1.1
+    type: OctetString
+    help: The product ID of the firmware associated with the processor. - 1.3.6.1.2.1.25.3.3.1.1
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrProcessorLoad
+    oid: 1.3.6.1.2.1.25.3.3.1.2
+    type: gauge
+    help: The average, over the last minute, of the percentage of time that this processor was not idle - 1.3.6.1.2.1.25.3.3.1.2
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrNetworkIfIndex
+    oid: 1.3.6.1.2.1.25.3.4.1.1
+    type: gauge
+    help: The value of ifIndex which corresponds to this network device - 1.3.6.1.2.1.25.3.4.1.1
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrPrinterStatus
+    oid: 1.3.6.1.2.1.25.3.5.1.1
+    type: gauge
+    help: The current status of this printer device. - 1.3.6.1.2.1.25.3.5.1.1
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    enum_values:
+      1: other
+      2: unknown
+      3: idle
+      4: printing
+      5: warmup
+  - name: hrPrinterDetectedErrorState
+    oid: 1.3.6.1.2.1.25.3.5.1.2
+    type: OctetString
+    help: This object represents any error conditions detected by the printer - 1.3.6.1.2.1.25.3.5.1.2
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrDiskStorageAccess
+    oid: 1.3.6.1.2.1.25.3.6.1.1
+    type: gauge
+    help: An indication if this long-term storage device is readable and writable or only readable - 1.3.6.1.2.1.25.3.6.1.1
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    enum_values:
+      1: readWrite
+      2: readOnly
+  - name: hrDiskStorageMedia
+    oid: 1.3.6.1.2.1.25.3.6.1.2
+    type: gauge
+    help: An indication of the type of media used in this long- term storage device. - 1.3.6.1.2.1.25.3.6.1.2
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    enum_values:
+      1: other
+      2: unknown
+      3: hardDisk
+      4: floppyDisk
+      5: opticalDiskROM
+      6: opticalDiskWORM
+      7: opticalDiskRW
+      8: ramDisk
+  - name: hrDiskStorageRemoveble
+    oid: 1.3.6.1.2.1.25.3.6.1.3
+    type: gauge
+    help: Denotes whether or not the disk media may be removed from the drive. - 1.3.6.1.2.1.25.3.6.1.3
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    enum_values:
+      1: "true"
+      2: "false"
+  - name: hrDiskStorageCapacity
+    oid: 1.3.6.1.2.1.25.3.6.1.4
+    type: gauge
+    help: The total size for this long-term storage device - 1.3.6.1.2.1.25.3.6.1.4
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+  - name: hrPartitionIndex
+    oid: 1.3.6.1.2.1.25.3.7.1.1
+    type: gauge
+    help: A unique value for each partition on this long-term storage device - 1.3.6.1.2.1.25.3.7.1.1
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    - labelname: hrPartitionIndex
+      type: gauge
+  - name: hrPartitionLabel
+    oid: 1.3.6.1.2.1.25.3.7.1.2
+    type: OctetString
+    help: A textual description of this partition. - 1.3.6.1.2.1.25.3.7.1.2
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    - labelname: hrPartitionIndex
+      type: gauge
+  - name: hrPartitionID
+    oid: 1.3.6.1.2.1.25.3.7.1.3
+    type: OctetString
+    help: A descriptor which uniquely represents this partition to the responsible operating system - 1.3.6.1.2.1.25.3.7.1.3
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    - labelname: hrPartitionIndex
+      type: gauge
+  - name: hrPartitionSize
+    oid: 1.3.6.1.2.1.25.3.7.1.4
+    type: gauge
+    help: The size of this partition. - 1.3.6.1.2.1.25.3.7.1.4
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    - labelname: hrPartitionIndex
+      type: gauge
+  - name: hrPartitionFSIndex
+    oid: 1.3.6.1.2.1.25.3.7.1.5
+    type: gauge
+    help: The index of the file system mounted on this partition - 1.3.6.1.2.1.25.3.7.1.5
+    indexes:
+    - labelname: hrDeviceIndex
+      type: gauge
+    - labelname: hrPartitionIndex
+      type: gauge
+  - name: hrFSIndex
+    oid: 1.3.6.1.2.1.25.3.8.1.1
+    type: gauge
+    help: A unique value for each file system local to this host - 1.3.6.1.2.1.25.3.8.1.1
+    indexes:
+    - labelname: hrFSIndex
+      type: gauge
+  - name: hrFSMountPoint
+    oid: 1.3.6.1.2.1.25.3.8.1.2
+    type: OctetString
+    help: The path name of the root of this file system. - 1.3.6.1.2.1.25.3.8.1.2
+    indexes:
+    - labelname: hrFSIndex
+      type: gauge
+  - name: hrFSRemoteMountPoint
+    oid: 1.3.6.1.2.1.25.3.8.1.3
+    type: OctetString
+    help: A description of the name and/or address of the server that this file system is mounted from - 1.3.6.1.2.1.25.3.8.1.3
+    indexes:
+    - labelname: hrFSIndex
+      type: gauge
+  - name: hrFSType
+    oid: 1.3.6.1.2.1.25.3.8.1.4
+    type: OctetString
+    help: The value of this object identifies the type of this file system. - 1.3.6.1.2.1.25.3.8.1.4
+    indexes:
+    - labelname: hrFSIndex
+      type: gauge
+  - name: hrFSAccess
+    oid: 1.3.6.1.2.1.25.3.8.1.5
+    type: gauge
+    help: An indication if this file system is logically configured by the operating system to be readable and writable or only readable - 1.3.6.1.2.1.25.3.8.1.5
+    indexes:
+    - labelname: hrFSIndex
+      type: gauge
+    enum_values:
+      1: readWrite
+      2: readOnly
+  - name: hrFSBootable
+    oid: 1.3.6.1.2.1.25.3.8.1.6
+    type: gauge
+    help: A flag indicating whether this file system is bootable. - 1.3.6.1.2.1.25.3.8.1.6
+    indexes:
+    - labelname: hrFSIndex
+      type: gauge
+    enum_values:
+      1: "true"
+      2: "false"
+  - name: hrFSStorageIndex
+    oid: 1.3.6.1.2.1.25.3.8.1.7
+    type: gauge
+    help: The index of the hrStorageEntry that represents information about this file system - 1.3.6.1.2.1.25.3.8.1.7
+    indexes:
+    - labelname: hrFSIndex
+      type: gauge
+  - name: hrFSLastFullBackupDate
+    oid: 1.3.6.1.2.1.25.3.8.1.8
+    type: DateAndTime
+    help: The last date at which this complete file system was copied to another storage device for backup - 1.3.6.1.2.1.25.3.8.1.8
+    indexes:
+    - labelname: hrFSIndex
+      type: gauge
+  - name: hrFSLastPartialBackupDate
+    oid: 1.3.6.1.2.1.25.3.8.1.9
+    type: DateAndTime
+    help: The last date at which a portion of this file system was copied to another storage device for backup - 1.3.6.1.2.1.25.3.8.1.9
+    indexes:
+    - labelname: hrFSIndex
+      type: gauge
   - name: ifInMulticastPkts
     oid: 1.3.6.1.2.1.31.1.1.1.2
     type: counter
@@ -1273,6 +1552,356 @@ mikrotik_mib:
       labelname: ifName
       oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
+  - name: ipNetToMediaIfIndex
+    oid: 1.3.6.1.2.1.4.22.1.1
+    type: gauge
+    help: The interface on which this entry's equivalence is effective - 1.3.6.1.2.1.4.22.1.1
+    indexes:
+    - labelname: ipNetToMediaIfIndex
+      type: gauge
+    - labelname: ipNetToMediaNetAddress
+      type: InetAddressIPv4
+    lookups:
+    - labels:
+      - ipNetToMediaIfIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ipNetToMediaIfIndex
+      labelname: ifDescr
+      oid: 1.3.6.1.2.1.2.2.1.2
+      type: DisplayString
+  - name: ipNetToMediaPhysAddress
+    oid: 1.3.6.1.2.1.4.22.1.2
+    type: PhysAddress48
+    help: The media-dependent `physical' address - 1.3.6.1.2.1.4.22.1.2
+    indexes:
+    - labelname: ipNetToMediaIfIndex
+      type: gauge
+    - labelname: ipNetToMediaNetAddress
+      type: InetAddressIPv4
+    lookups:
+    - labels:
+      - ipNetToMediaIfIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ipNetToMediaIfIndex
+      labelname: ifDescr
+      oid: 1.3.6.1.2.1.2.2.1.2
+      type: DisplayString
+  - name: ipNetToMediaNetAddress
+    oid: 1.3.6.1.2.1.4.22.1.3
+    type: InetAddressIPv4
+    help: The IpAddress corresponding to the media-dependent `physical' address - 1.3.6.1.2.1.4.22.1.3
+    indexes:
+    - labelname: ipNetToMediaIfIndex
+      type: gauge
+    - labelname: ipNetToMediaNetAddress
+      type: InetAddressIPv4
+    lookups:
+    - labels:
+      - ipNetToMediaIfIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ipNetToMediaIfIndex
+      labelname: ifDescr
+      oid: 1.3.6.1.2.1.2.2.1.2
+      type: DisplayString
+  - name: ipNetToMediaType
+    oid: 1.3.6.1.2.1.4.22.1.4
+    type: gauge
+    help: The type of mapping - 1.3.6.1.2.1.4.22.1.4
+    indexes:
+    - labelname: ipNetToMediaIfIndex
+      type: gauge
+    - labelname: ipNetToMediaNetAddress
+      type: InetAddressIPv4
+    lookups:
+    - labels:
+      - ipNetToMediaIfIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+    - labels:
+      - ipNetToMediaIfIndex
+      labelname: ifDescr
+      oid: 1.3.6.1.2.1.2.2.1.2
+      type: DisplayString
+    enum_values:
+      1: other
+      2: invalid
+      3: dynamic
+      4: static
+  - name: dhcpv4ServerSystemDescr
+    oid: 1.3.6.1.2.1.9999.1.1.1.1
+    type: DisplayString
+    help: A textual description of the server - 1.3.6.1.2.1.9999.1.1.1.1
+  - name: dhcpv4ServerSystemObjectID
+    oid: 1.3.6.1.2.1.9999.1.1.1.2
+    type: OctetString
+    help: The vendor's authoritative identification of the network management subsystem contained in this entity - 1.3.6.1.2.1.9999.1.1.1.2
+  - name: bootpCountRequests
+    oid: 1.3.6.1.2.1.9999.1.1.2.1
+    type: counter
+    help: The number of packets received that contain a Message Type of 1 (BOOTREQUEST) in the first octet and do not contain option number 53 (DHCP Message Type) in the options. - 1.3.6.1.2.1.9999.1.1.2.1
+  - name: bootpCountInvalids
+    oid: 1.3.6.1.2.1.9999.1.1.2.2
+    type: counter
+    help: The number of packets received that do not contain a Message Type of 1 (BOOTREQUEST) in the first octet or are not valid BOOTP packets (e.g., too short, invalid field in packet header). - 1.3.6.1.2.1.9999.1.1.2.2
+  - name: bootpCountReplies
+    oid: 1.3.6.1.2.1.9999.1.1.2.3
+    type: counter
+    help: The number of packets sent that contain a Message Type of 2 (BOOTREPLY) in the first octet and do not contain option number 53 (DHCP Message Type) in the options. - 1.3.6.1.2.1.9999.1.1.2.3
+  - name: bootpCountDroppedUnknownClients
+    oid: 1.3.6.1.2.1.9999.1.1.2.4
+    type: counter
+    help: The number of BOOTP packets dropped due to the server not recognizing or not providing service to the hardware address received in the incoming packet. - 1.3.6.1.2.1.9999.1.1.2.4
+  - name: bootpCountDroppedNotServingSubnet
+    oid: 1.3.6.1.2.1.9999.1.1.2.5
+    type: counter
+    help: The number of BOOTP packets dropped due to the server not being configured or not otherwise able to serve addresses on the subnet from which this message was received. - 1.3.6.1.2.1.9999.1.1.2.5
+  - name: dhcpv4CountDiscovers
+    oid: 1.3.6.1.2.1.9999.1.1.3.1
+    type: counter
+    help: The number of DHCPDISCOVER (option 53 with value 1) packets received. - 1.3.6.1.2.1.9999.1.1.3.1
+  - name: dhcpv4CountOffers
+    oid: 1.3.6.1.2.1.9999.1.1.3.2
+    type: counter
+    help: The number of DHCPOFFER (option 53 with value 2) packets sent. - 1.3.6.1.2.1.9999.1.1.3.2
+  - name: dhcpv4CountRequests
+    oid: 1.3.6.1.2.1.9999.1.1.3.3
+    type: counter
+    help: The number of DHCPREQUEST (option 53 with value 3) packets received. - 1.3.6.1.2.1.9999.1.1.3.3
+  - name: dhcpv4CountDeclines
+    oid: 1.3.6.1.2.1.9999.1.1.3.4
+    type: counter
+    help: The number of DHCPDECLINE (option 53 with value 4) packets received. - 1.3.6.1.2.1.9999.1.1.3.4
+  - name: dhcpv4CountAcks
+    oid: 1.3.6.1.2.1.9999.1.1.3.5
+    type: counter
+    help: The number of DHCPACK (option 53 with value 5) packets sent. - 1.3.6.1.2.1.9999.1.1.3.5
+  - name: dhcpv4CountNaks
+    oid: 1.3.6.1.2.1.9999.1.1.3.6
+    type: counter
+    help: The number of DHCPNACK (option 53 with value 6) packets sent. - 1.3.6.1.2.1.9999.1.1.3.6
+  - name: dhcpv4CountReleases
+    oid: 1.3.6.1.2.1.9999.1.1.3.7
+    type: counter
+    help: The number of DHCPRELEASE (option 53 with value 7) packets received. - 1.3.6.1.2.1.9999.1.1.3.7
+  - name: dhcpv4CountInforms
+    oid: 1.3.6.1.2.1.9999.1.1.3.8
+    type: counter
+    help: The number of DHCPINFORM (option 53 with value 8) packets received. - 1.3.6.1.2.1.9999.1.1.3.8
+  - name: dhcpv4CountForcedRenews
+    oid: 1.3.6.1.2.1.9999.1.1.3.9
+    type: counter
+    help: The number of DHCPFORCERENEW (option 53 with value 9) packets sent. - 1.3.6.1.2.1.9999.1.1.3.9
+  - name: dhcpv4CountInvalids
+    oid: 1.3.6.1.2.1.9999.1.1.3.10
+    type: counter
+    help: The number of DHCP packets received whose DHCP message type (i.e., option number 53) is not understood or handled by the server. - 1.3.6.1.2.1.9999.1.1.3.10
+  - name: dhcpv4CountDroppedUnknownClient
+    oid: 1.3.6.1.2.1.9999.1.1.3.11
+    type: counter
+    help: The number of DHCP packets dropped due to the server not recognizing or not providing service to the client-id and/or hardware address received in the incoming packet. - 1.3.6.1.2.1.9999.1.1.3.11
+  - name: dhcpv4CountDroppedNotServingSubnet
+    oid: 1.3.6.1.2.1.9999.1.1.3.12
+    type: counter
+    help: The number of DHCP packets dropped due to the server not being configured or not otherwise able to serve addresses on the subnet from which this message was received. - 1.3.6.1.2.1.9999.1.1.3.12
+  - name: dhcpv4ServerSharedNetName
+    oid: 1.3.6.1.2.1.9999.1.1.6.1.1.1
+    type: DisplayString
+    help: The name of the shared network, which uniquely identifies an entry in the dhcpv4ServerSharedNetTable. - 1.3.6.1.2.1.9999.1.1.6.1.1.1
+    indexes:
+    - labelname: dhcpv4ServerSharedNetName
+      type: DisplayString
+  - name: dhcpv4ServerSubnetAddress
+    oid: 1.3.6.1.2.1.9999.1.1.6.2.1.1
+    type: InetAddressIPv4
+    help: The IPv4 address of the subnet entry in the dhcpv4ServerSubnetTable. - 1.3.6.1.2.1.9999.1.1.6.2.1.1
+    indexes:
+    - labelname: dhcpv4ServerSubnetAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerSubnetMask
+    oid: 1.3.6.1.2.1.9999.1.1.6.2.1.2
+    type: gauge
+    help: The subnet mask of the subnet - 1.3.6.1.2.1.9999.1.1.6.2.1.2
+    indexes:
+    - labelname: dhcpv4ServerSubnetAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerSubnetSharedNetworkName
+    oid: 1.3.6.1.2.1.9999.1.1.6.2.1.3
+    type: DisplayString
+    help: The shared subnet name (used as an index into the server shared subnet table) to which this subnet belongs - 1.3.6.1.2.1.9999.1.1.6.2.1.3
+    indexes:
+    - labelname: dhcpv4ServerSubnetAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerRangeStartAddress
+    oid: 1.3.6.1.2.1.9999.1.1.6.3.1.1
+    type: InetAddressIPv4
+    help: The IPv4 address of the first address in the range - 1.3.6.1.2.1.9999.1.1.6.3.1.1
+    indexes:
+    - labelname: dhcpv4ServerRangeStartAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+    - labelname: dhcpv4ServerRangeEndAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerRangeEndAddress
+    oid: 1.3.6.1.2.1.9999.1.1.6.3.1.2
+    type: InetAddressIPv4
+    help: The IPv4 address of the last address in the range - 1.3.6.1.2.1.9999.1.1.6.3.1.2
+    indexes:
+    - labelname: dhcpv4ServerRangeStartAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+    - labelname: dhcpv4ServerRangeEndAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerRangeSubnetMask
+    oid: 1.3.6.1.2.1.9999.1.1.6.3.1.3
+    type: gauge
+    help: The subnet address mask for this range. - 1.3.6.1.2.1.9999.1.1.6.3.1.3
+    indexes:
+    - labelname: dhcpv4ServerRangeStartAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+    - labelname: dhcpv4ServerRangeEndAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerRangeInUse
+    oid: 1.3.6.1.2.1.9999.1.1.6.3.1.4
+    type: gauge
+    help: The number of addresses in this range that are currently in use - 1.3.6.1.2.1.9999.1.1.6.3.1.4
+    indexes:
+    - labelname: dhcpv4ServerRangeStartAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+    - labelname: dhcpv4ServerRangeEndAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerRangeOutstandingOffers
+    oid: 1.3.6.1.2.1.9999.1.1.6.3.1.5
+    type: gauge
+    help: The number of outstanding DHCPOFFER messages for this range is reported with this value - 1.3.6.1.2.1.9999.1.1.6.3.1.5
+    indexes:
+    - labelname: dhcpv4ServerRangeStartAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+    - labelname: dhcpv4ServerRangeEndAddress
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerClient
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.1
+    type: InetAddressIPv4
+    help: The IPv4 address of this entry in the dhcpv4ServerClientTable. - 1.3.6.1.2.1.9999.1.1.6.4.1.1
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerClientSubnetMask
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.2
+    type: gauge
+    help: The subnet mask (DHCP option 1) provided to the client offered this address - 1.3.6.1.2.1.9999.1.1.6.4.1.2
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerClientRange
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.3
+    type: InetAddressIPv4
+    help: The starting IPv4 address (dhcpv4ServerRangeStartAddress object) of the range to which this address belongs - 1.3.6.1.2.1.9999.1.1.6.4.1.3
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerClientLeaseType
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.4
+    type: gauge
+    help: The type of this address - 1.3.6.1.2.1.9999.1.1.6.4.1.4
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+    enum_values:
+      1: static
+      2: dynamic
+      3: expired
+      4: configurationReserved
+      5: serverReserved
+  - name: dhcpv4ServerClientTimeRemaining
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.5
+    type: gauge
+    help: The number of seconds until the lease expires - 1.3.6.1.2.1.9999.1.1.6.4.1.5
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerClientAllowedProtocol
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.6
+    type: gauge
+    help: The type of protocol that is allowed to be used to serve this address - 1.3.6.1.2.1.9999.1.1.6.4.1.6
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+    enum_values:
+      1: none
+      2: bootp
+      3: dhcp
+      4: bootpOrDhcp
+  - name: dhcpv4ServerClientServedProtocol
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.7
+    type: gauge
+    help: The type of protocol that was used when this address was assigned - 1.3.6.1.2.1.9999.1.1.6.4.1.7
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+    enum_values:
+      1: none
+      2: bootp
+      3: dhcp
+  - name: dhcpv4ServerClientPhysicalAddress
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.8
+    type: OctetString
+    help: The hardware type and hardware address of the client that has been assigned this lease - 1.3.6.1.2.1.9999.1.1.6.4.1.8
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerClientClientId
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.9
+    type: OctetString
+    help: The client-id of the client that has been assigned this lease - 1.3.6.1.2.1.9999.1.1.6.4.1.9
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerClientHostName
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.10
+    type: DisplayString
+    help: The host name (DHCP option 12) the client is configured to use, or if no host name was configured then the host name that the client supplied when requesting an address - 1.3.6.1.2.1.9999.1.1.6.4.1.10
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
+  - name: dhcpv4ServerClientDomainName
+    oid: 1.3.6.1.2.1.9999.1.1.6.4.1.11
+    type: DisplayString
+    help: The domain name (DHCP option 15) assigned to the client - 1.3.6.1.2.1.9999.1.1.6.4.1.11
+    indexes:
+    - labelname: dhcpv4ServerClient
+      type: InetAddressIPv4
+      fixed_size: 4
   - name: mtxrWlStatIndex
     oid: 1.3.6.1.4.1.14988.1.1.1.1.1.1
     type: gauge
@@ -1353,6 +1982,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabIface
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.2
     type: gauge
@@ -1363,6 +1998,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabStrength
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.3
     type: gauge
@@ -1373,6 +2014,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabTxBytes
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.4
     type: counter
@@ -1383,6 +2030,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabRxBytes
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.5
     type: counter
@@ -1393,6 +2046,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabTxPackets
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.6
     type: counter
@@ -1403,6 +2062,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabRxPackets
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.7
     type: counter
@@ -1413,6 +2078,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabTxRate
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.8
     type: gauge
@@ -1423,6 +2094,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabRxRate
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.9
     type: gauge
@@ -1433,6 +2110,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabUptime
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.11
     type: gauge
@@ -1443,6 +2126,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabSignalToNoise
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.12
     type: gauge
@@ -1453,6 +2142,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabTxStrengthCh0
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.13
     type: gauge
@@ -1463,6 +2158,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabRxStrengthCh0
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.14
     type: gauge
@@ -1473,6 +2174,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabTxStrengthCh1
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.15
     type: gauge
@@ -1483,6 +2190,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabRxStrengthCh1
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.16
     type: gauge
@@ -1493,6 +2206,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabTxStrengthCh2
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.17
     type: gauge
@@ -1503,6 +2222,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabRxStrengthCh2
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.18
     type: gauge
@@ -1513,6 +2238,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabTxStrength
     oid: 1.3.6.1.4.1.14988.1.1.1.2.1.19
     type: gauge
@@ -1523,6 +2254,12 @@ mikrotik_mib:
       fixed_size: 6
     - labelname: mtxrWlRtabIface
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlRtabIface
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlRtabEntryCount
     oid: 1.3.6.1.4.1.14988.1.1.1.4
     type: gauge
@@ -1534,6 +2271,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApTxRate
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.2
     type: gauge
@@ -1541,6 +2284,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApRxRate
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.3
     type: gauge
@@ -1548,6 +2297,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApSsid
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
     type: DisplayString
@@ -1555,6 +2310,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApBssid
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.5
     type: PhysAddress48
@@ -1562,6 +2323,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApClientCount
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.6
     type: counter
@@ -1569,6 +2336,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApFreq
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.7
     type: gauge
@@ -1576,6 +2349,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApBand
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.8
     type: DisplayString
@@ -1583,6 +2362,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApNoiseFloor
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.9
     type: gauge
@@ -1590,6 +2375,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApOverallTxCCQ
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.10
     type: counter
@@ -1597,6 +2388,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlApAuthClientCount
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.11
     type: counter
@@ -1604,6 +2401,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrWlApIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrWlApIndex
+      labelname: mtxrWlApSsid
+      oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
+      type: DisplayString
   - name: mtxrWlCMRtabAddr
     oid: 1.3.6.1.4.1.14988.1.1.1.5.1.1
     type: PhysAddress48
@@ -2415,14 +3218,6 @@ mikrotik_mib:
     oid: 1.3.6.1.4.1.14988.1.1.6.1
     type: gauge
     help: ' - 1.3.6.1.4.1.14988.1.1.6.1'
-  - name: mtxrSystemReboot
-    oid: 1.3.6.1.4.1.14988.1.1.7.1
-    type: gauge
-    help: set non zero to reboot - 1.3.6.1.4.1.14988.1.1.7.1
-  - name: mtxrUSBPowerReset
-    oid: 1.3.6.1.4.1.14988.1.1.7.2
-    type: gauge
-    help: switches off usb power for specified amout of seconds - 1.3.6.1.4.1.14988.1.1.7.2
   - name: mtxrSerialNumber
     oid: 1.3.6.1.4.1.14988.1.1.7.3
     type: DisplayString
@@ -2451,20 +3246,6 @@ mikrotik_mib:
     oid: 1.3.6.1.4.1.14988.1.1.8.1.1.1
     type: gauge
     help: ' - 1.3.6.1.4.1.14988.1.1.8.1.1.1'
-    indexes:
-    - labelname: mtxrScriptIndex
-      type: gauge
-  - name: mtxrScriptName
-    oid: 1.3.6.1.4.1.14988.1.1.8.1.1.2
-    type: DisplayString
-    help: ' - 1.3.6.1.4.1.14988.1.1.8.1.1.2'
-    indexes:
-    - labelname: mtxrScriptIndex
-      type: gauge
-  - name: mtxrScriptRunCmd
-    oid: 1.3.6.1.4.1.14988.1.1.8.1.1.3
-    type: gauge
-    help: set non zero to run - 1.3.6.1.4.1.14988.1.1.8.1.1.3
     indexes:
     - labelname: mtxrScriptIndex
       type: gauge
@@ -2609,6 +3390,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsName
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
     type: DisplayString
@@ -2616,6 +3403,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsDriverRxBytes
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.11
     type: counter
@@ -2623,6 +3416,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsDriverRxPackets
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.12
     type: counter
@@ -2630,6 +3429,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsDriverTxBytes
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.13
     type: counter
@@ -2637,6 +3442,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsDriverTxPackets
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.14
     type: counter
@@ -2644,6 +3455,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx64
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.15
     type: counter
@@ -2651,6 +3468,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx65To127
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.16
     type: counter
@@ -2658,6 +3481,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx128To255
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.17
     type: counter
@@ -2665,6 +3494,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx256To511
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.18
     type: counter
@@ -2672,6 +3507,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx512To1023
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.19
     type: counter
@@ -2679,6 +3520,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx1024To1518
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.20
     type: counter
@@ -2686,6 +3533,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx1519ToMax
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.21
     type: counter
@@ -2693,6 +3546,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxBytes
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.31
     type: counter
@@ -2700,6 +3559,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxPackets
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.32
     type: counter
@@ -2707,6 +3572,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxTooShort
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.33
     type: counter
@@ -2714,6 +3585,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRx64
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.34
     type: counter
@@ -2721,6 +3598,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRx65To127
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.35
     type: counter
@@ -2728,6 +3611,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRx128To255
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.36
     type: counter
@@ -2735,6 +3624,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRx256To511
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.37
     type: counter
@@ -2742,6 +3637,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRx512To1023
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.38
     type: counter
@@ -2749,6 +3650,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRx1024To1518
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.39
     type: counter
@@ -2756,6 +3663,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRx1519ToMax
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.40
     type: counter
@@ -2763,6 +3676,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxTooLong
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.41
     type: counter
@@ -2770,6 +3689,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxBroadcast
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.42
     type: counter
@@ -2777,6 +3702,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxPause
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.43
     type: counter
@@ -2784,6 +3715,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxMulticast
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.44
     type: counter
@@ -2791,6 +3728,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxFCSError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.45
     type: counter
@@ -2798,6 +3741,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxAlignError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.46
     type: counter
@@ -2805,6 +3754,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxFragment
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.47
     type: counter
@@ -2812,6 +3767,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxOverflow
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.48
     type: counter
@@ -2819,6 +3780,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxControl
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.49
     type: counter
@@ -2826,6 +3793,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxUnknownOp
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.50
     type: counter
@@ -2833,6 +3806,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxLengthError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.51
     type: counter
@@ -2840,6 +3819,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxCodeError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.52
     type: counter
@@ -2847,6 +3832,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxCarrierError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.53
     type: counter
@@ -2854,6 +3845,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxJabber
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.54
     type: counter
@@ -2861,6 +3858,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsRxDrop
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.55
     type: counter
@@ -2868,6 +3871,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxBytes
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.61
     type: counter
@@ -2875,6 +3884,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxPackets
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.62
     type: counter
@@ -2882,6 +3897,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxTooShort
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.63
     type: counter
@@ -2889,6 +3910,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTx64
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.64
     type: counter
@@ -2896,6 +3923,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTx65To127
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.65
     type: counter
@@ -2903,6 +3936,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTx128To255
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.66
     type: counter
@@ -2910,6 +3949,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTx256To511
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.67
     type: counter
@@ -2917,6 +3962,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTx512To1023
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.68
     type: counter
@@ -2924,6 +3975,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTx1024To1518
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.69
     type: counter
@@ -2931,6 +3988,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTx1519ToMax
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.70
     type: counter
@@ -2938,6 +4001,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxTooLong
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.71
     type: counter
@@ -2945,6 +4014,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxBroadcast
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.72
     type: counter
@@ -2952,6 +4027,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxPause
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.73
     type: counter
@@ -2959,6 +4040,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxMulticast
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.74
     type: counter
@@ -2966,6 +4053,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxUnderrun
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.75
     type: counter
@@ -2973,6 +4066,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.76
     type: counter
@@ -2980,6 +4079,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxExcessiveCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.77
     type: counter
@@ -2987,6 +4092,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxMultipleCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.78
     type: counter
@@ -2994,6 +4105,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxSingleCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.79
     type: counter
@@ -3001,6 +4118,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxExcessiveDeferred
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.80
     type: counter
@@ -3008,6 +4131,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxDeferred
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.81
     type: counter
@@ -3015,6 +4144,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxLateCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.82
     type: counter
@@ -3022,6 +4157,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxTotalCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.83
     type: counter
@@ -3029,6 +4170,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxPauseHonored
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.84
     type: counter
@@ -3036,6 +4183,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxDrop
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.85
     type: counter
@@ -3043,6 +4196,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxJabber
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.86
     type: counter
@@ -3050,6 +4209,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxFCSError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.87
     type: counter
@@ -3057,6 +4222,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxControl
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.88
     type: counter
@@ -3064,6 +4235,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsTxFragment
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.89
     type: counter
@@ -3071,6 +4248,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrInterfaceStatsLinkDowns
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.90
     type: counter
@@ -3078,6 +4261,12 @@ mikrotik_mib:
     indexes:
     - labelname: mtxrInterfaceStatsIndex
       type: gauge
+    lookups:
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: mtxrInterfaceStatsName
+      oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
   - name: mtxrPOEInterfaceIndex
     oid: 1.3.6.1.4.1.14988.1.1.15.1.1.1
     type: gauge
@@ -3567,4 +4756,425 @@ mikrotik_mib:
     help: ph2 SA rx packets - 1.3.6.1.4.1.14988.1.1.20.2.1.23
     indexes:
     - labelname: mtxrIkeSAIndex
+      type: gauge
+  - name: cacheSysVMsize
+    oid: 1.3.6.1.4.1.3495.1.1.1
+    type: gauge
+    help: Storage Mem size in KB - 1.3.6.1.4.1.3495.1.1.1
+  - name: cacheSysStorage
+    oid: 1.3.6.1.4.1.3495.1.1.2
+    type: gauge
+    help: Storage Swap size in KB - 1.3.6.1.4.1.3495.1.1.2
+  - name: cacheUptime
+    oid: 1.3.6.1.4.1.3495.1.1.3
+    type: gauge
+    help: The Uptime of the cache in timeticks - 1.3.6.1.4.1.3495.1.1.3
+  - name: cacheAdmin
+    oid: 1.3.6.1.4.1.3495.1.2.1
+    type: DisplayString
+    help: Cache Administrator E-Mail address - 1.3.6.1.4.1.3495.1.2.1
+  - name: cacheSoftware
+    oid: 1.3.6.1.4.1.3495.1.2.2
+    type: DisplayString
+    help: Cache Software Name - 1.3.6.1.4.1.3495.1.2.2
+  - name: cacheVersionId
+    oid: 1.3.6.1.4.1.3495.1.2.3
+    type: OctetString
+    help: Cache Software Version - 1.3.6.1.4.1.3495.1.2.3
+  - name: cacheLoggingFacility
+    oid: 1.3.6.1.4.1.3495.1.2.4
+    type: DisplayString
+    help: Logging Facility - 1.3.6.1.4.1.3495.1.2.4
+  - name: cacheMemMaxSize
+    oid: 1.3.6.1.4.1.3495.1.2.5.1
+    type: gauge
+    help: The value of the cache_mem parameter in MB - 1.3.6.1.4.1.3495.1.2.5.1
+  - name: cacheSwapMaxSize
+    oid: 1.3.6.1.4.1.3495.1.2.5.2
+    type: gauge
+    help: The total of the cache_dir space allocated in MB - 1.3.6.1.4.1.3495.1.2.5.2
+  - name: cacheSwapHighWM
+    oid: 1.3.6.1.4.1.3495.1.2.5.3
+    type: gauge
+    help: Cache Swap High Water Mark - 1.3.6.1.4.1.3495.1.2.5.3
+  - name: cacheSwapLowWM
+    oid: 1.3.6.1.4.1.3495.1.2.5.4
+    type: gauge
+    help: Cache Swap Low Water Mark - 1.3.6.1.4.1.3495.1.2.5.4
+  - name: cacheUniqName
+    oid: 1.3.6.1.4.1.3495.1.2.6
+    type: DisplayString
+    help: Cache unique host name - 1.3.6.1.4.1.3495.1.2.6
+  - name: cacheSysPageFaults
+    oid: 1.3.6.1.4.1.3495.1.3.1.1
+    type: counter
+    help: Page faults with physical i/o - 1.3.6.1.4.1.3495.1.3.1.1
+  - name: cacheSysNumReads
+    oid: 1.3.6.1.4.1.3495.1.3.1.2
+    type: counter
+    help: HTTP I/O number of reads - 1.3.6.1.4.1.3495.1.3.1.2
+  - name: cacheMemUsage
+    oid: 1.3.6.1.4.1.3495.1.3.1.3
+    type: gauge
+    help: Total memory accounted for KB - 1.3.6.1.4.1.3495.1.3.1.3
+  - name: cacheCpuTime
+    oid: 1.3.6.1.4.1.3495.1.3.1.4
+    type: gauge
+    help: Amount of cpu seconds consumed - 1.3.6.1.4.1.3495.1.3.1.4
+  - name: cacheCpuUsage
+    oid: 1.3.6.1.4.1.3495.1.3.1.5
+    type: gauge
+    help: The percentage use of the CPU - 1.3.6.1.4.1.3495.1.3.1.5
+  - name: cacheMaxResSize
+    oid: 1.3.6.1.4.1.3495.1.3.1.6
+    type: gauge
+    help: Maximum Resident Size in KB - 1.3.6.1.4.1.3495.1.3.1.6
+  - name: cacheNumObjCount
+    oid: 1.3.6.1.4.1.3495.1.3.1.7
+    type: gauge
+    help: Number of objects stored by the cache - 1.3.6.1.4.1.3495.1.3.1.7
+  - name: cacheCurrentLRUExpiration
+    oid: 1.3.6.1.4.1.3495.1.3.1.8
+    type: gauge
+    help: Storage LRU Expiration Age - 1.3.6.1.4.1.3495.1.3.1.8
+  - name: cacheCurrentUnlinkRequests
+    oid: 1.3.6.1.4.1.3495.1.3.1.9
+    type: gauge
+    help: Requests given to unlinkd - 1.3.6.1.4.1.3495.1.3.1.9
+  - name: cacheCurrentUnusedFDescrCnt
+    oid: 1.3.6.1.4.1.3495.1.3.1.10
+    type: gauge
+    help: Available number of file descriptors - 1.3.6.1.4.1.3495.1.3.1.10
+  - name: cacheCurrentResFileDescrCnt
+    oid: 1.3.6.1.4.1.3495.1.3.1.11
+    type: gauge
+    help: Reserved number of file descriptors - 1.3.6.1.4.1.3495.1.3.1.11
+  - name: cacheCurrentFileDescrCnt
+    oid: 1.3.6.1.4.1.3495.1.3.1.12
+    type: gauge
+    help: Number of file descriptors in use - 1.3.6.1.4.1.3495.1.3.1.12
+  - name: cacheCurrentFileDescrMax
+    oid: 1.3.6.1.4.1.3495.1.3.1.13
+    type: gauge
+    help: Highest file descriptors in use - 1.3.6.1.4.1.3495.1.3.1.13
+  - name: cacheProtoClientHttpRequests
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.1
+    type: counter
+    help: Number of HTTP requests received - 1.3.6.1.4.1.3495.1.3.2.1.1
+  - name: cacheHttpHits
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.2
+    type: counter
+    help: Number of HTTP Hits - 1.3.6.1.4.1.3495.1.3.2.1.2
+  - name: cacheHttpErrors
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.3
+    type: counter
+    help: Number of HTTP Errors - 1.3.6.1.4.1.3495.1.3.2.1.3
+  - name: cacheHttpInKb
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.4
+    type: counter
+    help: Number of HTTP KB's received - 1.3.6.1.4.1.3495.1.3.2.1.4
+  - name: cacheHttpOutKb
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.5
+    type: counter
+    help: Number of HTTP KB's transmitted - 1.3.6.1.4.1.3495.1.3.2.1.5
+  - name: cacheIcpPktsSent
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.6
+    type: counter
+    help: Number of ICP messages sent - 1.3.6.1.4.1.3495.1.3.2.1.6
+  - name: cacheIcpPktsRecv
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.7
+    type: counter
+    help: Number of ICP messages received - 1.3.6.1.4.1.3495.1.3.2.1.7
+  - name: cacheIcpKbSent
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.8
+    type: counter
+    help: Number of ICP KB's transmitted - 1.3.6.1.4.1.3495.1.3.2.1.8
+  - name: cacheIcpKbRecv
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.9
+    type: counter
+    help: Number of ICP KB's received - 1.3.6.1.4.1.3495.1.3.2.1.9
+  - name: cacheServerRequests
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.10
+    type: gauge
+    help: All requests from the client for the cache server - 1.3.6.1.4.1.3495.1.3.2.1.10
+  - name: cacheServerErrors
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.11
+    type: gauge
+    help: All errors for the cache server from client requests - 1.3.6.1.4.1.3495.1.3.2.1.11
+  - name: cacheServerInKb
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.12
+    type: counter
+    help: KB's of traffic received from servers - 1.3.6.1.4.1.3495.1.3.2.1.12
+  - name: cacheServerOutKb
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.13
+    type: counter
+    help: KB's of traffic sent to servers - 1.3.6.1.4.1.3495.1.3.2.1.13
+  - name: cacheCurrentSwapSize
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.14
+    type: gauge
+    help: Storage Swap size - 1.3.6.1.4.1.3495.1.3.2.1.14
+  - name: cacheClients
+    oid: 1.3.6.1.4.1.3495.1.3.2.1.15
+    type: gauge
+    help: Number of clients accessing cache - 1.3.6.1.4.1.3495.1.3.2.1.15
+  - name: cacheMedianTime
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.1
+    type: gauge
+    help: The value used to index the table 1/5/60 - 1.3.6.1.4.1.3495.1.3.2.2.1.1
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheHttpAllSvcTime
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.2
+    type: gauge
+    help: HTTP all service time - 1.3.6.1.4.1.3495.1.3.2.2.1.2
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheHttpMissSvcTime
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.3
+    type: gauge
+    help: HTTP miss service time - 1.3.6.1.4.1.3495.1.3.2.2.1.3
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheHttpNmSvcTime
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.4
+    type: gauge
+    help: HTTP hit not-modified service time - 1.3.6.1.4.1.3495.1.3.2.2.1.4
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheHttpHitSvcTime
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.5
+    type: gauge
+    help: HTTP hit service time - 1.3.6.1.4.1.3495.1.3.2.2.1.5
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheIcpQuerySvcTime
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.6
+    type: gauge
+    help: ICP query service time - 1.3.6.1.4.1.3495.1.3.2.2.1.6
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheIcpReplySvcTime
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.7
+    type: gauge
+    help: ICP reply service time - 1.3.6.1.4.1.3495.1.3.2.2.1.7
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheDnsSvcTime
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.8
+    type: gauge
+    help: DNS service time - 1.3.6.1.4.1.3495.1.3.2.2.1.8
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheRequestHitRatio
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.9
+    type: gauge
+    help: Request Hit Ratios - 1.3.6.1.4.1.3495.1.3.2.2.1.9
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheRequestByteRatio
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.10
+    type: gauge
+    help: Byte Hit Ratios - 1.3.6.1.4.1.3495.1.3.2.2.1.10
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheHttpNhSvcTime
+    oid: 1.3.6.1.4.1.3495.1.3.2.2.1.11
+    type: gauge
+    help: HTTP refresh hit service time - 1.3.6.1.4.1.3495.1.3.2.2.1.11
+    indexes:
+    - labelname: cacheMedianTime
+      type: gauge
+  - name: cacheIpEntries
+    oid: 1.3.6.1.4.1.3495.1.4.1.1
+    type: gauge
+    help: IP Cache Entries - 1.3.6.1.4.1.3495.1.4.1.1
+  - name: cacheIpRequests
+    oid: 1.3.6.1.4.1.3495.1.4.1.2
+    type: counter
+    help: Number of IP Cache requests - 1.3.6.1.4.1.3495.1.4.1.2
+  - name: cacheIpHits
+    oid: 1.3.6.1.4.1.3495.1.4.1.3
+    type: counter
+    help: Number of IP Cache hits - 1.3.6.1.4.1.3495.1.4.1.3
+  - name: cacheIpPendingHits
+    oid: 1.3.6.1.4.1.3495.1.4.1.4
+    type: gauge
+    help: Number of IP Cache pending hits - 1.3.6.1.4.1.3495.1.4.1.4
+  - name: cacheIpNegativeHits
+    oid: 1.3.6.1.4.1.3495.1.4.1.5
+    type: counter
+    help: Number of IP Cache negative hits - 1.3.6.1.4.1.3495.1.4.1.5
+  - name: cacheIpMisses
+    oid: 1.3.6.1.4.1.3495.1.4.1.6
+    type: counter
+    help: Number of IP Cache misses - 1.3.6.1.4.1.3495.1.4.1.6
+  - name: cacheBlockingGetHostByName
+    oid: 1.3.6.1.4.1.3495.1.4.1.7
+    type: counter
+    help: Number of blocking gethostbyname requests - 1.3.6.1.4.1.3495.1.4.1.7
+  - name: cacheAttemptReleaseLckEntries
+    oid: 1.3.6.1.4.1.3495.1.4.1.8
+    type: counter
+    help: Number of attempts to release locked IP Cache entries - 1.3.6.1.4.1.3495.1.4.1.8
+  - name: cacheFqdnEntries
+    oid: 1.3.6.1.4.1.3495.1.4.2.1
+    type: gauge
+    help: FQDN Cache entries - 1.3.6.1.4.1.3495.1.4.2.1
+  - name: cacheFqdnRequests
+    oid: 1.3.6.1.4.1.3495.1.4.2.2
+    type: counter
+    help: Number of FQDN Cache requests - 1.3.6.1.4.1.3495.1.4.2.2
+  - name: cacheFqdnHits
+    oid: 1.3.6.1.4.1.3495.1.4.2.3
+    type: counter
+    help: Number of FQDN Cache hits - 1.3.6.1.4.1.3495.1.4.2.3
+  - name: cacheFqdnPendingHits
+    oid: 1.3.6.1.4.1.3495.1.4.2.4
+    type: gauge
+    help: Number of FQDN Cache pending hits - 1.3.6.1.4.1.3495.1.4.2.4
+  - name: cacheFqdnNegativeHits
+    oid: 1.3.6.1.4.1.3495.1.4.2.5
+    type: counter
+    help: Number of FQDN Cache negative hits - 1.3.6.1.4.1.3495.1.4.2.5
+  - name: cacheFqdnMisses
+    oid: 1.3.6.1.4.1.3495.1.4.2.6
+    type: counter
+    help: Number of FQDN Cache misses - 1.3.6.1.4.1.3495.1.4.2.6
+  - name: cacheBlockingGetHostByAddr
+    oid: 1.3.6.1.4.1.3495.1.4.2.7
+    type: counter
+    help: Number of blocking gethostbyaddr requests - 1.3.6.1.4.1.3495.1.4.2.7
+  - name: cacheDnsRequests
+    oid: 1.3.6.1.4.1.3495.1.4.3.1
+    type: counter
+    help: Number of external DNS server requests - 1.3.6.1.4.1.3495.1.4.3.1
+  - name: cacheDnsReplies
+    oid: 1.3.6.1.4.1.3495.1.4.3.2
+    type: counter
+    help: Number of external DNS server replies - 1.3.6.1.4.1.3495.1.4.3.2
+  - name: cacheDnsNumberServers
+    oid: 1.3.6.1.4.1.3495.1.4.3.3
+    type: counter
+    help: Number of external DNS server processes - 1.3.6.1.4.1.3495.1.4.3.3
+  - name: cachePeerIndex
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.1
+    type: gauge
+    help: A unique non-zero value identifying the particular cache Peer. - 1.3.6.1.4.1.3495.1.5.1.3.1
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerName
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.2
+    type: DisplayString
+    help: The FQDN name or internal alias for the peer cache - 1.3.6.1.4.1.3495.1.5.1.3.2
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerAddressType
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.3
+    type: gauge
+    help: The type of Internet address by which the peer cache is reachable. - 1.3.6.1.4.1.3495.1.5.1.3.3
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+    enum_values:
+      0: unknown
+      1: ipv4
+      2: ipv6
+      3: ipv4z
+      4: ipv6z
+      16: dns
+  - name: cachePeerAddress
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.4
+    type: InetAddress
+    help: The Internet address for the peer cache - 1.3.6.1.4.1.3495.1.5.1.3.4
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerPortHttp
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.5
+    type: gauge
+    help: The port the peer listens for HTTP requests - 1.3.6.1.4.1.3495.1.5.1.3.5
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerPortIcp
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.6
+    type: gauge
+    help: The port the peer listens for ICP requests should be 0 if not configured to send ICP requests - 1.3.6.1.4.1.3495.1.5.1.3.6
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerType
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.7
+    type: gauge
+    help: Peer Type - 1.3.6.1.4.1.3495.1.5.1.3.7
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerState
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.8
+    type: gauge
+    help: The operational state of this peer - 1.3.6.1.4.1.3495.1.5.1.3.8
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerPingsSent
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.9
+    type: counter
+    help: Number of pings sent to peer - 1.3.6.1.4.1.3495.1.5.1.3.9
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerPingsAcked
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.10
+    type: counter
+    help: Number of pings received from peer - 1.3.6.1.4.1.3495.1.5.1.3.10
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerFetches
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.11
+    type: counter
+    help: Number of times this peer was selected - 1.3.6.1.4.1.3495.1.5.1.3.11
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerRtt
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.12
+    type: gauge
+    help: Last known round-trip time to the peer (in ms) - 1.3.6.1.4.1.3495.1.5.1.3.12
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerIgnored
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.13
+    type: counter
+    help: How many times this peer was ignored - 1.3.6.1.4.1.3495.1.5.1.3.13
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerKeepAlSent
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.14
+    type: counter
+    help: Number of keepalives sent - 1.3.6.1.4.1.3495.1.5.1.3.14
+    indexes:
+    - labelname: cachePeerIndex
+      type: gauge
+  - name: cachePeerKeepAlRecv
+    oid: 1.3.6.1.4.1.3495.1.5.1.3.15
+    type: counter
+    help: Number of keepalives received - 1.3.6.1.4.1.3495.1.5.1.3.15
+    indexes:
+    - labelname: cachePeerIndex
       type: gauge

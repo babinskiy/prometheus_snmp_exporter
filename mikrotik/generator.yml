@@ -4,17 +4,28 @@ modules:
       - sysDescr
       - sysName
       - sysUpTime
-      - hrStorageEntry
-      - interfaces
+      - hrSystem
+      - hrStorage
+      - hrDevice
+      - ifTable
       - ifXTable
+      - ipNetToMediaTable
+      - dhcpv4Server
       - mtXRouterOs
+      - 1.3.6.1.4.1.3495 # SQUID-MIB
     lookups:
       - source_indexes: [hrStorageIndex]
         lookup: hrStorageDescr
-      - source_indexes: [mtxrWlApIndex, mtxrWlRtabIface]
+      - source_indexes: [mtxrWlApIndex]
         lookup: mtxrWlApSsid
-        drop_source_indexes: false
-
+      - source_indexes: [mtxrWlRtabIface]
+        lookup: mtxrWlApSsid
+      - source_indexes: [mtxrInterfaceStatsIndex]
+        lookup: mtxrInterfaceStatsName
+      - source_indexes: [ipNetToMediaIfIndex]
+        lookup: ifName
+      - source_indexes: [ipNetToMediaIfIndex]
+        lookup: ifDescr
       - source_indexes: [ifIndex]
         lookup: ifAlias
       - source_indexes: [ifIndex]
@@ -25,6 +36,14 @@ modules:
         lookup: 1.3.6.1.2.1.31.1.1.1.1 # ifName
     overrides:
       hrStorageType:
+        ignore: true
+      mtxrScriptName:
+        ignore: true
+      mtxrSystemReboot:
+        ignore: true
+      mtxrUSBPowerReset:
+        ignore: true
+      mtxrScriptRunCmd:
         ignore: true
       hrStorageAllocationUnits:
         ignore: true
