@@ -1,14 +1,14 @@
 # WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
 mikrotik_mib:
   walk:
-  - 1.3.6.1.2.1.2.2
+  - 1.3.6.1.2.1.2
   - 1.3.6.1.2.1.25.1
   - 1.3.6.1.2.1.25.2
   - 1.3.6.1.2.1.25.3
-  - 1.3.6.1.2.1.31.1.1
-  - 1.3.6.1.2.1.4.22
+  - 1.3.6.1.2.1.31.1.1.1.1
+  - 1.3.6.1.2.1.31.1.1.1.18
   - 1.3.6.1.2.1.9999.1
-  - 1.3.6.1.4.1.14988.1.1
+  - 1.3.6.1.4.1.14988
   - 1.3.6.1.4.1.3495
   get:
   - 1.3.6.1.2.1.1.1.0
@@ -27,6 +27,10 @@ mikrotik_mib:
     oid: 1.3.6.1.2.1.1.5
     type: DisplayString
     help: An administratively-assigned name for this managed node - 1.3.6.1.2.1.1.5
+  - name: ifNumber
+    oid: 1.3.6.1.2.1.2.1
+    type: gauge
+    help: The number of network interfaces (regardless of their current state) present on this system. - 1.3.6.1.2.1.2.1
   - name: ifIndex
     oid: 1.3.6.1.2.1.2.2.1.1
     type: gauge
@@ -1152,491 +1156,6 @@ mikrotik_mib:
     indexes:
     - labelname: hrFSIndex
       type: gauge
-  - name: ifInMulticastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.2
-    type: counter
-    help: The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were addressed to a multicast address at this sub-layer - 1.3.6.1.2.1.31.1.1.1.2
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifInBroadcastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.3
-    type: counter
-    help: The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were addressed to a broadcast address at this sub-layer - 1.3.6.1.2.1.31.1.1.1.3
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifOutMulticastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.4
-    type: counter
-    help: The total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.4
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifOutBroadcastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.5
-    type: counter
-    help: The total number of packets that higher-level protocols requested be transmitted, and which were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.5
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifHCInOctets
-    oid: 1.3.6.1.2.1.31.1.1.1.6
-    type: counter
-    help: The total number of octets received on the interface, including framing characters - 1.3.6.1.2.1.31.1.1.1.6
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifHCInUcastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.7
-    type: counter
-    help: The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were not addressed to a multicast or broadcast address at this sub-layer - 1.3.6.1.2.1.31.1.1.1.7
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifHCInMulticastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.8
-    type: counter
-    help: The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were addressed to a multicast address at this sub-layer - 1.3.6.1.2.1.31.1.1.1.8
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifHCInBroadcastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.9
-    type: counter
-    help: The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were addressed to a broadcast address at this sub-layer - 1.3.6.1.2.1.31.1.1.1.9
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifHCOutOctets
-    oid: 1.3.6.1.2.1.31.1.1.1.10
-    type: counter
-    help: The total number of octets transmitted out of the interface, including framing characters - 1.3.6.1.2.1.31.1.1.1.10
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifHCOutUcastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.11
-    type: counter
-    help: The total number of packets that higher-level protocols requested be transmitted, and which were not addressed to a multicast or broadcast address at this sub-layer, including those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.11
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifHCOutMulticastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.12
-    type: counter
-    help: The total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.12
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifHCOutBroadcastPkts
-    oid: 1.3.6.1.2.1.31.1.1.1.13
-    type: counter
-    help: The total number of packets that higher-level protocols requested be transmitted, and which were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent - 1.3.6.1.2.1.31.1.1.1.13
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifLinkUpDownTrapEnable
-    oid: 1.3.6.1.2.1.31.1.1.1.14
-    type: gauge
-    help: Indicates whether linkUp/linkDown traps should be generated for this interface - 1.3.6.1.2.1.31.1.1.1.14
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-    enum_values:
-      1: enabled
-      2: disabled
-  - name: ifHighSpeed
-    oid: 1.3.6.1.2.1.31.1.1.1.15
-    type: gauge
-    help: An estimate of the interface's current bandwidth in units of 1,000,000 bits per second - 1.3.6.1.2.1.31.1.1.1.15
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ifPromiscuousMode
-    oid: 1.3.6.1.2.1.31.1.1.1.16
-    type: gauge
-    help: This object has a value of false(2) if this interface only accepts packets/frames that are addressed to this station - 1.3.6.1.2.1.31.1.1.1.16
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-    enum_values:
-      1: "true"
-      2: "false"
-  - name: ifConnectorPresent
-    oid: 1.3.6.1.2.1.31.1.1.1.17
-    type: gauge
-    help: This object has the value 'true(1)' if the interface sublayer has a physical connector and the value 'false(2)' otherwise. - 1.3.6.1.2.1.31.1.1.1.17
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-    enum_values:
-      1: "true"
-      2: "false"
-  - name: ifCounterDiscontinuityTime
-    oid: 1.3.6.1.2.1.31.1.1.1.19
-    type: gauge
-    help: The value of sysUpTime on the most recent occasion at which any one or more of this interface's counters suffered a discontinuity - 1.3.6.1.2.1.31.1.1.1.19
-    indexes:
-    - labelname: ifIndex
-      type: gauge
-    lookups:
-    - labels:
-      - ifIndex
-      labelname: ifAlias
-      oid: 1.3.6.1.2.1.31.1.1.1.18
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    - labels:
-      - ifIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-  - name: ipNetToMediaIfIndex
-    oid: 1.3.6.1.2.1.4.22.1.1
-    type: gauge
-    help: The interface on which this entry's equivalence is effective - 1.3.6.1.2.1.4.22.1.1
-    indexes:
-    - labelname: ipNetToMediaIfIndex
-      type: gauge
-    - labelname: ipNetToMediaNetAddress
-      type: InetAddressIPv4
-    lookups:
-    - labels:
-      - ipNetToMediaIfIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-    - labels:
-      - ipNetToMediaIfIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-  - name: ipNetToMediaPhysAddress
-    oid: 1.3.6.1.2.1.4.22.1.2
-    type: PhysAddress48
-    help: The media-dependent `physical' address - 1.3.6.1.2.1.4.22.1.2
-    indexes:
-    - labelname: ipNetToMediaIfIndex
-      type: gauge
-    - labelname: ipNetToMediaNetAddress
-      type: InetAddressIPv4
-    lookups:
-    - labels:
-      - ipNetToMediaIfIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-    - labels:
-      - ipNetToMediaIfIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-  - name: ipNetToMediaNetAddress
-    oid: 1.3.6.1.2.1.4.22.1.3
-    type: InetAddressIPv4
-    help: The IpAddress corresponding to the media-dependent `physical' address - 1.3.6.1.2.1.4.22.1.3
-    indexes:
-    - labelname: ipNetToMediaIfIndex
-      type: gauge
-    - labelname: ipNetToMediaNetAddress
-      type: InetAddressIPv4
-    lookups:
-    - labels:
-      - ipNetToMediaIfIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-    - labels:
-      - ipNetToMediaIfIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-  - name: ipNetToMediaType
-    oid: 1.3.6.1.2.1.4.22.1.4
-    type: gauge
-    help: The type of mapping - 1.3.6.1.2.1.4.22.1.4
-    indexes:
-    - labelname: ipNetToMediaIfIndex
-      type: gauge
-    - labelname: ipNetToMediaNetAddress
-      type: InetAddressIPv4
-    lookups:
-    - labels:
-      - ipNetToMediaIfIndex
-      labelname: ifName
-      oid: 1.3.6.1.2.1.31.1.1.1.1
-      type: DisplayString
-    - labels:
-      - ipNetToMediaIfIndex
-      labelname: ifDescr
-      oid: 1.3.6.1.2.1.2.2.1.2
-      type: DisplayString
-    enum_values:
-      1: other
-      2: invalid
-      3: dynamic
-      4: static
   - name: dhcpv4ServerSystemDescr
     oid: 1.3.6.1.2.1.9999.1.1.1.1
     type: DisplayString
@@ -2260,10 +1779,6 @@ mikrotik_mib:
       labelname: mtxrWlApSsid
       oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
       type: DisplayString
-  - name: mtxrWlRtabEntryCount
-    oid: 1.3.6.1.4.1.14988.1.1.1.4
-    type: gauge
-    help: Wireless registration table entry count - 1.3.6.1.4.1.14988.1.1.1.4
   - name: mtxrWlApIndex
     oid: 1.3.6.1.4.1.14988.1.1.1.3.1.1
     type: gauge
@@ -2407,6 +1922,10 @@ mikrotik_mib:
       labelname: mtxrWlApSsid
       oid: 1.3.6.1.4.1.14988.1.1.1.3.1.4
       type: DisplayString
+  - name: mtxrWlRtabEntryCount
+    oid: 1.3.6.1.4.1.14988.1.1.1.4
+    type: gauge
+    help: Wireless registration table entry count - 1.3.6.1.4.1.14988.1.1.1.4
   - name: mtxrWlCMRtabAddr
     oid: 1.3.6.1.4.1.14988.1.1.1.5.1.1
     type: PhysAddress48
@@ -2541,10 +2060,6 @@ mikrotik_mib:
     oid: 1.3.6.1.4.1.14988.1.1.1.6
     type: gauge
     help: Wireless CAPSMAN registration table entry count - 1.3.6.1.4.1.14988.1.1.1.6
-  - name: mtxrWlCMREntryCount
-    oid: 1.3.6.1.4.1.14988.1.1.1.10
-    type: gauge
-    help: Wireless CAPSMAN remote-cap entry count - 1.3.6.1.4.1.14988.1.1.1.10
   - name: mtxrWlCMIndex
     oid: 1.3.6.1.4.1.14988.1.1.1.7.1.1
     type: gauge
@@ -2579,41 +2094,6 @@ mikrotik_mib:
     help: for master only - 1.3.6.1.4.1.14988.1.1.1.7.1.5
     indexes:
     - labelname: mtxrWlCMIndex
-      type: gauge
-  - name: mtxrWlCMRemoteIndex
-    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.1
-    type: gauge
-    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.1'
-    indexes:
-    - labelname: mtxrWlCMRemoteIndex
-      type: gauge
-  - name: mtxrWlCMRemoteName
-    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.2
-    type: DisplayString
-    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.2'
-    indexes:
-    - labelname: mtxrWlCMRemoteIndex
-      type: gauge
-  - name: mtxrWlCMRemoteState
-    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.3
-    type: DisplayString
-    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.3'
-    indexes:
-    - labelname: mtxrWlCMRemoteIndex
-      type: gauge
-  - name: mtxrWlCMRemoteAddress
-    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.4
-    type: DisplayString
-    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.4'
-    indexes:
-    - labelname: mtxrWlCMRemoteIndex
-      type: gauge
-  - name: mtxrWlCMRemoteRadios
-    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.5
-    type: counter
-    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.5'
-    indexes:
-    - labelname: mtxrWlCMRemoteIndex
       type: gauge
   - name: mtxrWl60GIndex
     oid: 1.3.6.1.4.1.14988.1.1.1.8.1.1
@@ -2772,6 +2252,45 @@ mikrotik_mib:
     help: meters - 1.3.6.1.4.1.14988.1.1.1.9.1.10
     indexes:
     - labelname: mtxrWl60GStaIndex
+      type: gauge
+  - name: mtxrWlCMREntryCount
+    oid: 1.3.6.1.4.1.14988.1.1.1.10
+    type: gauge
+    help: Wireless CAPSMAN remote-cap entry count - 1.3.6.1.4.1.14988.1.1.1.10
+  - name: mtxrWlCMRemoteIndex
+    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.1
+    type: gauge
+    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.1'
+    indexes:
+    - labelname: mtxrWlCMRemoteIndex
+      type: gauge
+  - name: mtxrWlCMRemoteName
+    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.2
+    type: DisplayString
+    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.2'
+    indexes:
+    - labelname: mtxrWlCMRemoteIndex
+      type: gauge
+  - name: mtxrWlCMRemoteState
+    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.3
+    type: DisplayString
+    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.3'
+    indexes:
+    - labelname: mtxrWlCMRemoteIndex
+      type: gauge
+  - name: mtxrWlCMRemoteAddress
+    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.4
+    type: DisplayString
+    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.4'
+    indexes:
+    - labelname: mtxrWlCMRemoteIndex
+      type: gauge
+  - name: mtxrWlCMRemoteRadios
+    oid: 1.3.6.1.4.1.14988.1.1.1.11.1.5
+    type: counter
+    help: ' - 1.3.6.1.4.1.14988.1.1.1.11.1.5'
+    indexes:
+    - labelname: mtxrWlCMRemoteIndex
       type: gauge
   - name: mtxrQueueSimpleIndex
     oid: 1.3.6.1.4.1.14988.1.1.2.1.1.1
@@ -3396,6 +2915,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsName
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
     type: DisplayString
@@ -3408,6 +2932,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsDriverRxBytes
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.11
@@ -3422,6 +2951,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsDriverRxPackets
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.12
     type: counter
@@ -3434,6 +2968,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsDriverTxBytes
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.13
@@ -3448,6 +2987,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsDriverTxPackets
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.14
     type: counter
@@ -3460,6 +3004,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxRx64
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.15
@@ -3474,6 +3023,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx65To127
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.16
     type: counter
@@ -3486,6 +3040,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxRx128To255
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.17
@@ -3500,6 +3059,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx256To511
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.18
     type: counter
@@ -3512,6 +3076,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxRx512To1023
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.19
@@ -3526,6 +3095,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxRx1024To1518
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.20
     type: counter
@@ -3538,6 +3112,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxRx1519ToMax
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.21
@@ -3552,6 +3131,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxBytes
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.31
     type: counter
@@ -3564,6 +3148,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRxPackets
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.32
@@ -3578,6 +3167,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxTooShort
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.33
     type: counter
@@ -3590,6 +3184,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRx64
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.34
@@ -3604,6 +3203,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRx65To127
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.35
     type: counter
@@ -3616,6 +3220,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRx128To255
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.36
@@ -3630,6 +3239,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRx256To511
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.37
     type: counter
@@ -3642,6 +3256,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRx512To1023
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.38
@@ -3656,6 +3275,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRx1024To1518
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.39
     type: counter
@@ -3668,6 +3292,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRx1519ToMax
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.40
@@ -3682,6 +3311,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxTooLong
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.41
     type: counter
@@ -3694,6 +3328,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRxBroadcast
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.42
@@ -3708,6 +3347,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxPause
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.43
     type: counter
@@ -3720,6 +3364,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRxMulticast
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.44
@@ -3734,6 +3383,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxFCSError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.45
     type: counter
@@ -3746,6 +3400,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRxAlignError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.46
@@ -3760,6 +3419,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxFragment
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.47
     type: counter
@@ -3772,6 +3436,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRxOverflow
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.48
@@ -3786,6 +3455,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxControl
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.49
     type: counter
@@ -3798,6 +3472,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRxUnknownOp
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.50
@@ -3812,6 +3491,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxLengthError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.51
     type: counter
@@ -3824,6 +3508,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRxCodeError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.52
@@ -3838,6 +3527,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxCarrierError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.53
     type: counter
@@ -3850,6 +3544,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsRxJabber
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.54
@@ -3864,6 +3563,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsRxDrop
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.55
     type: counter
@@ -3876,6 +3580,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxBytes
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.61
@@ -3890,6 +3599,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxPackets
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.62
     type: counter
@@ -3902,6 +3616,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxTooShort
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.63
@@ -3916,6 +3635,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTx64
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.64
     type: counter
@@ -3928,6 +3652,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTx65To127
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.65
@@ -3942,6 +3671,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTx128To255
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.66
     type: counter
@@ -3954,6 +3688,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTx256To511
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.67
@@ -3968,6 +3707,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTx512To1023
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.68
     type: counter
@@ -3980,6 +3724,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTx1024To1518
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.69
@@ -3994,6 +3743,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTx1519ToMax
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.70
     type: counter
@@ -4006,6 +3760,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxTooLong
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.71
@@ -4020,6 +3779,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxBroadcast
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.72
     type: counter
@@ -4032,6 +3796,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxPause
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.73
@@ -4046,6 +3815,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxMulticast
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.74
     type: counter
@@ -4058,6 +3832,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxUnderrun
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.75
@@ -4072,6 +3851,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.76
     type: counter
@@ -4084,6 +3868,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxExcessiveCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.77
@@ -4098,6 +3887,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxMultipleCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.78
     type: counter
@@ -4110,6 +3904,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxSingleCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.79
@@ -4124,6 +3923,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxExcessiveDeferred
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.80
     type: counter
@@ -4136,6 +3940,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxDeferred
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.81
@@ -4150,6 +3959,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxLateCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.82
     type: counter
@@ -4162,6 +3976,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxTotalCollision
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.83
@@ -4176,6 +3995,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxPauseHonored
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.84
     type: counter
@@ -4188,6 +4012,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxDrop
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.85
@@ -4202,6 +4031,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxJabber
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.86
     type: counter
@@ -4214,6 +4048,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxFCSError
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.87
@@ -4228,6 +4067,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsTxControl
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.88
     type: counter
@@ -4240,6 +4084,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrInterfaceStatsTxFragment
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.89
@@ -4254,6 +4103,11 @@ mikrotik_mib:
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
       type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
   - name: mtxrInterfaceStatsLinkDowns
     oid: 1.3.6.1.4.1.14988.1.1.14.1.1.90
     type: counter
@@ -4266,6 +4120,11 @@ mikrotik_mib:
       - mtxrInterfaceStatsIndex
       labelname: mtxrInterfaceStatsName
       oid: 1.3.6.1.4.1.14988.1.1.14.1.1.2
+      type: DisplayString
+    - labels:
+      - mtxrInterfaceStatsIndex
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
       type: DisplayString
   - name: mtxrPOEInterfaceIndex
     oid: 1.3.6.1.4.1.14988.1.1.15.1.1.1
